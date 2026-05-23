@@ -22,6 +22,16 @@ if ($database_url) {
 $conn = @new mysqli($db_host, $db_user, $db_pass, $db_name, (int) $db_port);
 
 if ($conn->connect_error) {
+    error_log(sprintf(
+        'Database connection failed: %s; host=%s; port=%s; database=%s; user=%s; has_database_url=%s',
+        $conn->connect_error,
+        $db_host,
+        $db_port,
+        $db_name,
+        $db_user,
+        $database_url ? 'yes' : 'no'
+    ));
+
     die("Database connection failed. Please check the Render database environment variables.");
 }
 ?>
