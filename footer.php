@@ -4,11 +4,10 @@ $footer_year = date('Y');
 <style>
     .tpo-footer {
         width: 100%;
-        margin-top: 28px;
-        background: #101828;
-        color: #d7e0ec;
+        margin-top: 0;
+        background: #111111;
+        color: #ffffff;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        border-top: 3px solid #667eea;
     }
 
     .tpo-footer * {
@@ -16,67 +15,172 @@ $footer_year = date('Y');
     }
 
     .tpo-footer-inner {
-        max-width: 1120px;
+        max-width: 1180px;
         margin: 0 auto;
-        padding: 20px 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-        flex-wrap: wrap;
+        padding: 34px 28px 28px;
     }
 
-    .tpo-footer-title {
+    .tpo-footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr repeat(4, 1fr);
+        gap: 34px;
+        align-items: start;
+    }
+
+    .tpo-footer-logo {
         color: #ffffff;
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+
+    .tpo-footer-tagline {
+        color: #bdbdbd;
+        font-size: 0.68rem;
         font-weight: 700;
-        font-size: 1rem;
-        margin-bottom: 4px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
     }
 
-    .tpo-footer p {
+    .tpo-footer h3 {
         margin: 0;
-        color: #c7d2df;
-        font-size: 0.86rem;
-        line-height: 1.55;
+        color: #ffffff;
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.07em;
+        line-height: 1.35;
+        text-transform: uppercase;
     }
 
-    .tpo-footer-links {
+    .tpo-footer ul {
+        list-style: none;
+        margin: 8px 0 0;
+        padding: 0;
+    }
+
+    .tpo-footer li,
+    .tpo-footer a {
+        color: #d8d8d8;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        line-height: 1.7;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .tpo-footer a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+    .tpo-footer-rule {
+        border: 0;
+        border-top: 1px solid #5b5b5b;
+        margin: 34px 0 22px;
+    }
+
+    .tpo-footer-social {
         display: flex;
-        gap: 14px;
+        justify-content: center;
+        gap: 8px;
         flex-wrap: wrap;
-        font-size: 0.85rem;
     }
 
-    .tpo-footer-links span {
-        color: #e5edf7;
-        white-space: nowrap;
+    .tpo-footer-social a {
+        width: 24px;
+        height: 24px;
+        border: 1px solid #ffffff;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 0.65rem;
+        line-height: 1;
+        text-decoration: none;
+        text-transform: none;
     }
 
-    @media (max-width: 700px) {
-        .tpo-footer-inner {
-            align-items: flex-start;
-            flex-direction: column;
+    .tpo-footer-copy {
+        margin-top: 10px;
+        color: #cfcfcf;
+        font-size: 0.68rem;
+        text-align: center;
+    }
+
+    @media (max-width: 900px) {
+        .tpo-footer-top {
+            grid-template-columns: 1fr 1fr;
         }
+    }
 
-        .tpo-footer-links {
-            flex-direction: column;
-            gap: 6px;
+    @media (max-width: 560px) {
+        .tpo-footer-top {
+            grid-template-columns: 1fr;
         }
     }
 </style>
 
 <footer class="tpo-footer" id="tpoFooter">
     <div class="tpo-footer-inner">
-        <div>
-            <div class="tpo-footer-title">Task Performance Optimizer</div>
-            <p>&copy; <?php echo $footer_year; ?> Academic group contribution tracking system.</p>
+        <div class="tpo-footer-top">
+            <section>
+                <div class="tpo-footer-logo">Task Performance Optimizer</div>
+                <div class="tpo-footer-tagline">Academic contribution system</div>
+            </section>
+
+            <section>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="login.php">Sign In</a></li>
+                    <li><a href="register.php">Create Account</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Services</h3>
+                <ul>
+                    <li>Task Tracking</li>
+                    <li>Group Progress</li>
+                    <li>Final Reports</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Contact</h3>
+                <ul>
+                    <li>Administrator</li>
+                    <li>Assigned Lecturer</li>
+                    <li>support@task-performance.local</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Policies</h3>
+                <ul>
+                    <li>Academic Use Only</li>
+                    <li>Protect Student Data</li>
+                    <li>Follow Integrity Rules</li>
+                </ul>
+            </section>
         </div>
 
-        <div class="tpo-footer-links" aria-label="Project contact, policies and regulations">
-            <span>Contact: support@task-performance.local</span>
-            <span>Policy: academic use only</span>
-            <span>Regulation: protect student data and submissions</span>
+        <hr class="tpo-footer-rule">
+
+        <div class="tpo-footer-social" aria-label="Social links">
+            <a href="index.php" aria-label="Website">w</a>
+            <a href="login.php" aria-label="Account">u</a>
+            <a href="register.php" aria-label="Register">+</a>
+            <a href="mailto:support@task-performance.local" aria-label="Email">@</a>
+            <a href="index.php" aria-label="More">...</a>
         </div>
+
+        <div class="tpo-footer-copy">&copy; <?php echo $footer_year; ?> Copyright. All rights reserved.</div>
     </div>
 </footer>
 

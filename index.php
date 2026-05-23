@@ -81,6 +81,91 @@
             }
         }
 
+        .site-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 24px 36px;
+        }
+
+        .site-nav {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            background: rgba(10, 16, 32, 0.28);
+            backdrop-filter: blur(10px);
+        }
+
+        .site-brand {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+
+        .site-brand i {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .site-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .site-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .site-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .site-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-action {
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 999px;
+            padding: 8px 14px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .site-action.primary {
+            border-color: transparent;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
         /* Main Content - Directly on image */
         .content {
             position: relative;
@@ -91,7 +176,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
+            padding: 120px 20px 60px;
         }
 
         /* Logo Animation */
@@ -265,6 +350,17 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .site-header {
+                padding: 14px;
+            }
+            .site-nav {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .site-links,
+            .site-actions {
+                width: 100%;
+            }
             .logo h1 {
                 font-size: 1.8rem;
             }
@@ -286,6 +382,27 @@
 <!-- Full Screen Background Image -->
 <img src="teamwork-2.jpg" alt="Background" class="bg-image">
 <div class="overlay"></div>
+
+<header class="site-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.php" class="site-brand">
+            <i class="fas fa-chart-line"></i>
+            <span>Task Performance Optimizer</span>
+        </a>
+
+        <div class="site-links">
+            <a href="index.php">Home</a>
+            <a href="login.php">Dashboard</a>
+            <a href="register.php">Account</a>
+            <a href="#tpoFooter">Contact</a>
+        </div>
+
+        <div class="site-actions">
+            <a href="login.php" class="site-action">Sign In</a>
+            <a href="register.php" class="site-action primary">Create Account</a>
+        </div>
+    </nav>
+</header>
 
 <!-- Animated Background Bubbles -->
 <div class="bubble" style="width: 100px; height: 100px; top: 10%; left: 5%; animation-duration: 6s;"></div>
