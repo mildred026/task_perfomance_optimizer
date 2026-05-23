@@ -29,7 +29,7 @@ if ($check_column->num_rows == 0) {
 // Get user's tasks
 $tasks_sql = "SELECT t.*, g.group_name 
               FROM tasks t
-              JOIN groups g ON t.group_id = g.id
+              JOIN project_groups g ON t.group_id = g.id
               WHERE t.assigned_to = $user_id
               ORDER BY 
                   CASE 

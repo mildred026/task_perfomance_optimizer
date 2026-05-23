@@ -30,7 +30,7 @@ $error_message = "";
 $success_message = "";
 
 // Get all groups where user is leader
-$all_groups_sql = "SELECT id, group_name FROM groups WHERE leader_id = $user_id ORDER BY group_name";
+$all_groups_sql = "SELECT id, group_name FROM project_groups WHERE leader_id = $user_id ORDER BY group_name";
 $all_groups_result = $conn->query($all_groups_sql);
 $all_groups = [];
 while ($row = $all_groups_result->fetch_assoc()) {
@@ -54,7 +54,7 @@ if (!$selected_group_id && count($all_groups) == 0) {
 // Get current group name
 $current_group_name = "";
 if ($selected_group_id) {
-    $group_name_sql = "SELECT group_name FROM groups WHERE id = $selected_group_id";
+    $group_name_sql = "SELECT group_name FROM project_groups WHERE id = $selected_group_id";
     $group_name_result = $conn->query($group_name_sql);
     if ($group_name_result && $group_name_result->num_rows > 0) {
         $current_group_name = $group_name_result->fetch_assoc()['group_name'];
@@ -67,7 +67,7 @@ if (isset($_GET['delete_task'])) {
     
     $check_leader = "SELECT t.id, g.leader_id 
                      FROM tasks t 
-                     JOIN groups g ON t.group_id = g.id 
+                     JOIN project_groups g ON t.group_id = g.id 
                      WHERE t.id = $task_id";
     $task_result = $conn->query($check_leader);
     if ($task_result && $task_result->num_rows > 0) {
@@ -94,7 +94,7 @@ if (isset($_POST['assign'])) {
     $task_group_id = intval($_POST['group_id']);
     $today = date('Y-m-d');
     
-    $verify_leader = "SELECT id FROM groups WHERE id = $task_group_id AND leader_id = $user_id";
+    $verify_leader = "SELECT id FROM project_groups WHERE id = $task_group_id AND leader_id = $user_id";
     $verify_result = $conn->query($verify_leader);
     
     if ($verify_result && $verify_result->num_rows == 0) {

@@ -22,7 +22,7 @@ $user_role = $user_data['role'];
 $is_lecturer = ($user_role == 'lecturer');
 
 // Check if user is a group leader
-$leader_sql = "SELECT group_id FROM groups WHERE leader_id = '$user_id'";
+$leader_sql = "SELECT group_id FROM project_groups WHERE leader_id = '$user_id'";
 $leader_result = $conn->query($leader_sql);
 if ($leader_result && $leader_result->num_rows > 0) {
     $is_leader = true;
@@ -432,7 +432,7 @@ if (isset($_GET['download'])) {
             $reports_sql = "SELECT fr.*, g.group_name, u.name as leader_name, 
                                    COUNT(DISTINCT gm.user_id) as member_count
                            FROM final_reports fr 
-                           JOIN groups g ON fr.group_id = g.id 
+                           JOIN project_groups g ON fr.group_id = g.id 
                            JOIN users u ON fr.uploaded_by = u.id 
                            LEFT JOIN group_members gm ON g.id = gm.group_id
                            GROUP BY fr.id

@@ -32,7 +32,7 @@ if (isset($_GET['join'])) {
         $_SESSION['error'] = "You are already a member of this group.";
     } else {
         // Check if group exists
-        $group_check = "SELECT id FROM groups WHERE id = $join_group_id";
+        $group_check = "SELECT id FROM project_groups WHERE id = $join_group_id";
         $group_result = $conn->query($group_check);
         
         if ($group_result && $group_result->num_rows > 0) {
@@ -69,7 +69,7 @@ if (isset($_GET['delete_group'])) {
     $delete_group_id = intval($_GET['delete_group']);
     
     // Verify the user is the leader of this group
-    $check_leader = "SELECT leader_id FROM groups WHERE id = $delete_group_id";
+    $check_leader = "SELECT leader_id FROM project_groups WHERE id = $delete_group_id";
     $leader_result = $conn->query($check_leader);
     
     if ($leader_result && $leader_result->num_rows > 0) {
@@ -89,7 +89,7 @@ if (isset($_GET['delete_group'])) {
             // Delete messages
             $conn->query("DELETE FROM messages WHERE group_id = $delete_group_id");
             // Finally delete the group
-            $conn->query("DELETE FROM groups WHERE id = $delete_group_id");
+            $conn->query("DELETE FROM project_groups WHERE id = $delete_group_id");
             
             $_SESSION['success'] = "Group deleted successfully!";
         } else {
@@ -112,23 +112,25 @@ if (isset($_GET['view_members'])) {
 // Get ALL groups the user is a member of (for displaying current groups)
 $user_groups_sql = "SELECT g.id, g.group_name, u.name as leader_name, g.leader_id,
                     (SELECT COUNT(*) FROM group_members WHERE group_id = g.id) as member_count
-                    FROM groups g
+                    FROM project_groups g
                     JOIN group_members gm ON g.id = gm.group_id
                     JOIN users u ON g.leader_id = u.id
                     WHERE gm.user_id = $user_id
                     ORDER BY gm.joined_at DESC";
 $user_groups = $conn->query($user_groups_sql);
 $has_groups = ($user_groups && $user_groups->num_rows > 0);
+$user_groups_count = $user_groups ? $user_groups->num_rows : 0;
 
 // Get ALL groups available (excluding groups user is already in)
 $available_groups_sql = "SELECT g.*, u.name as leader_name,
                          (SELECT COUNT(*) FROM group_members WHERE group_id = g.id) as member_count,
                          (SELECT COUNT(*) FROM group_members WHERE group_id = g.id AND user_id = $user_id) as is_member
-                         FROM groups g
+                         FROM project_groups g
                          JOIN users u ON g.leader_id = u.id
                          WHERE g.id NOT IN (SELECT group_id FROM group_members WHERE user_id = $user_id)
                          ORDER BY g.created_at DESC";
 $available_groups = $conn->query($available_groups_sql);
+$available_groups_count = $available_groups ? $available_groups->num_rows : 0;
 
 // Get unread message count for inbox badge
 $unread_count = 0;

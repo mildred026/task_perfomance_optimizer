@@ -1,6 +1,7 @@
 .env
 *.log
 *.sql
+!railway_rename_groups_table.sql
 Thumbs.db
 desktop.ini
 .DS_Store

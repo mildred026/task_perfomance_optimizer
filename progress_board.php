@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_progress']) && 
         }
         
         // Notify leader
-        $leader_sql = "SELECT leader_id FROM groups WHERE id = $group_id";
+        $leader_sql = "SELECT leader_id FROM project_groups WHERE id = $group_id";
         $leader_result = $conn->query($leader_sql);
         $leader_id = $leader_result->fetch_assoc()['leader_id'];
         

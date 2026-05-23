@@ -36,7 +36,7 @@ if (isset($_POST['login'])) {
             
             // Get group_id for leaders
             if ($user['is_leader'] == 1) {
-                $check_group = $conn->query("SELECT id FROM groups WHERE leader_id='{$user['id']}'");
+                $check_group = $conn->query("SELECT id FROM project_groups WHERE leader_id='{$user['id']}'");
                 if ($check_group && $check_group->num_rows > 0) {
                     $group = $check_group->fetch_assoc();
                     $_SESSION['group_id'] = $group['id'];

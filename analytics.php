@@ -49,7 +49,7 @@ $students_sql = "SELECT DISTINCT u.id, u.name,
                  ROUND(AVG(t.progress_percentage), 1) as avg_progress
                  FROM users u
                  LEFT JOIN group_members gm ON u.id = gm.user_id
-                 LEFT JOIN groups g ON gm.group_id = g.id
+                 LEFT JOIN project_groups g ON gm.group_id = g.id
                  LEFT JOIN tasks t ON t.assigned_to = u.id
                  WHERE u.role = 'student'
                  AND g.lecturer_id = $user_id
@@ -86,7 +86,7 @@ $progress_sql = "SELECT u.id, u.name,
                  SUM(CASE WHEN pu.leader_status = 'pending' THEN 1 ELSE 0 END) as pending_submissions
                  FROM users u
                  LEFT JOIN group_members gm ON u.id = gm.user_id
-                 LEFT JOIN groups g ON gm.group_id = g.id
+                 LEFT JOIN project_groups g ON gm.group_id = g.id
                  LEFT JOIN progress_updates pu ON u.id = pu.user_id
                  WHERE u.role = 'student'
                  AND g.lecturer_id = $user_id
@@ -114,7 +114,7 @@ $groups_sql = "SELECT g.group_name, g.id,
                lc.course_code, lc.course_name,
                COUNT(DISTINCT pu.id) as total_submissions,
                SUM(CASE WHEN pu.leader_status = 'approved' THEN 1 ELSE 0 END) as approved_submissions
-               FROM groups g
+               FROM project_groups g
                LEFT JOIN tasks t ON t.group_id = g.id
                LEFT JOIN lecturer_courses lc ON g.course_id = lc.id
                LEFT JOIN progress_updates pu ON pu.group_id = g.id

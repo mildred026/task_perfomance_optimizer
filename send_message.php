@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = $conn->real_escape_string($_POST['message']);
     
     // SECURITY CHECK: Verify that the sender is actually the leader of this group
-    $leader_check = "SELECT leader_id FROM groups WHERE id = $group_id";
+    $leader_check = "SELECT leader_id FROM project_groups WHERE id = $group_id";
     $leader_result = $conn->query($leader_check);
     $leader_id = $leader_result->fetch_assoc()['leader_id'];
     

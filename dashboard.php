@@ -34,7 +34,7 @@ $is_lecturer = ($user_role == 'lecturer');
 // Get group_id for statistics
 $group_id = null;
 if ($is_leader) {
-    $group_sql = "SELECT id FROM groups WHERE leader_id = '$user_id'";
+    $group_sql = "SELECT id FROM project_groups WHERE leader_id = '$user_id'";
     $group_result = $conn->query($group_sql);
     if ($group_result && $group_result->num_rows > 0) {
         $group_id = $group_result->fetch_assoc()['id'];
@@ -82,7 +82,7 @@ if ($is_lecturer) {
     $courses_sql = "SELECT * FROM lecturer_courses WHERE lecturer_id = $user_id ORDER BY course_code";
     $courses_result = $conn->query($courses_sql);
     while ($course = $courses_result->fetch_assoc()) {
-        $group_count_sql = "SELECT COUNT(*) as count FROM groups WHERE course_id = {$course['id']}";
+        $group_count_sql = "SELECT COUNT(*) as count FROM project_groups WHERE course_id = {$course['id']}";
         $group_count_result = $conn->query($group_count_sql);
         $course['group_count'] = $group_count_result->fetch_assoc()['count'];
         $lecturer_courses[] = $course;

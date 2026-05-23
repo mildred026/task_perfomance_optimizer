@@ -29,7 +29,7 @@ if (!$is_leader) {
 $group_id = $_SESSION['group_id'] ?? null;
 
 if (!$group_id) {
-    $group_sql = "SELECT id FROM groups WHERE leader_id = '$user_id'";
+    $group_sql = "SELECT id FROM project_groups WHERE leader_id = '$user_id'";
     $group_result = $conn->query($group_sql);
     if ($group_result && $group_result->num_rows > 0) {
         $group_id = $group_result->fetch_assoc()['id'];
@@ -44,7 +44,7 @@ if (!$group_id) {
 }
 
 // Get group name
-$group_sql = "SELECT group_name FROM groups WHERE id = $group_id";
+$group_sql = "SELECT group_name FROM project_groups WHERE id = $group_id";
 $group_result = $conn->query($group_sql);
 $group_name = $group_result->fetch_assoc()['group_name'];
 

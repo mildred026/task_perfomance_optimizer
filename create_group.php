@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_group']) && emp
     $course_id = intval($_POST['course_id']);
     
     // Check if group name already exists
-    $check_sql = "SELECT id FROM groups WHERE group_name = '$group_name'";
+    $check_sql = "SELECT id FROM project_groups WHERE group_name = '$group_name'";
     $check_result = $conn->query($check_sql);
     
     if ($check_result && $check_result->num_rows > 0) {
         $error_message = "❌ Group name already exists. Please choose another name.";
     } else {
         // Insert group with course_id
-        $insert_sql = "INSERT INTO groups (group_name, leader_id, course_id, created_at) 
+        $insert_sql = "INSERT INTO project_groups (group_name, leader_id, course_id, created_at) 
                        VALUES ('$group_name', '$user_id', '$course_id', NOW())";
         
         if ($conn->query($insert_sql)) {
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_group']) && emp
 $my_groups_sql = "SELECT g.*, 
                   (SELECT COUNT(*) FROM group_members WHERE group_id = g.id) as member_count,
                   lc.course_code, lc.course_name
-                  FROM groups g
+                  FROM project_groups g
                   LEFT JOIN lecturer_courses lc ON g.course_id = lc.id
                   WHERE g.leader_id = $user_id
                   ORDER BY g.created_at DESC";

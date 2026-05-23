@@ -19,7 +19,7 @@ if ($is_leader != 1) {
 }
 
 // Get group info
-$group_sql = "SELECT group_name FROM groups WHERE id = $group_id AND leader_id = $user_id";
+$group_sql = "SELECT group_name FROM project_groups WHERE id = $group_id AND leader_id = $user_id";
 $group_result = $conn->query($group_sql);
 $group = $group_result->fetch_assoc();
 

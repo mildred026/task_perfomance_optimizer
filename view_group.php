@@ -30,7 +30,7 @@ $group_id = intval($_GET['group_id']);
 
 // Get group info including leader_id
 $group_query = "SELECT g.*, u.name as leader_name 
-                FROM groups g
+                FROM project_groups g
                 JOIN users u ON g.leader_id = u.id
                 WHERE g.id='$group_id'";
 $group_result = $conn->query($group_query);

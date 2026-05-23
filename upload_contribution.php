@@ -63,7 +63,7 @@ if (isset($_POST['upload'])) {
                 $task_result = $conn->query($task_sql);
                 if ($task_result && $task_result->num_rows > 0) {
                     $group_id = $task_result->fetch_assoc()['group_id'];
-                    $leader_sql = "SELECT leader_id FROM groups WHERE id = $group_id";
+                    $leader_sql = "SELECT leader_id FROM project_groups WHERE id = $group_id";
                     $leader_result = $conn->query($leader_sql);
                     if ($leader_result && $leader_result->num_rows > 0) {
                         $leader_id = $leader_result->fetch_assoc()['leader_id'];

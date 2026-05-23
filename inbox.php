@@ -56,7 +56,7 @@ $messages_sql = "SELECT m.*,
                  g.group_name
                  FROM messages m
                  JOIN users u_from ON m.from_user_id = u_from.id
-                 JOIN groups g ON m.group_id = g.id
+                 JOIN project_groups g ON m.group_id = g.id
                  WHERE m.to_user_id = $user_id
                  ORDER BY m.created_at DESC";
 $messages = $conn->query($messages_sql);

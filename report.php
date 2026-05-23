@@ -77,7 +77,7 @@ if (isset($_GET['download_contribution'])) {
         if ($is_lecturer) {
             $has_permission = true;
         } else if ($is_leader == 1) {
-            $check_leader = $conn->query("SELECT id FROM groups WHERE id = $group_id AND leader_id = $user_id");
+            $check_leader = $conn->query("SELECT id FROM project_groups WHERE id = $group_id AND leader_id = $user_id");
             if ($check_leader && $check_leader->num_rows > 0) {
                 $has_permission = true;
             }
@@ -113,7 +113,7 @@ if (isset($_GET['view_file'])) {
         if ($is_lecturer) {
             $has_permission = true;
         } else if ($is_leader == 1) {
-            $check_leader = $conn->query("SELECT id FROM groups WHERE id = $group_id AND leader_id = $user_id");
+            $check_leader = $conn->query("SELECT id FROM project_groups WHERE id = $group_id AND leader_id = $user_id");
             if ($check_leader && $check_leader->num_rows > 0) {
                 $has_permission = true;
             }
@@ -378,9 +378,9 @@ if (isset($_GET['view_file'])) {
             // Get groups based on role and selected course
             if ($is_lecturer) {
                 if ($selected_course_id > 0) {
-                    $groups_sql = "SELECT * FROM groups WHERE course_id = $selected_course_id ORDER BY group_name";
+                    $groups_sql = "SELECT * FROM project_groups WHERE course_id = $selected_course_id ORDER BY group_name";
                 } else {
-                    $groups_sql = "SELECT * FROM groups WHERE course_id IN (SELECT id FROM lecturer_courses WHERE lecturer_id = $user_id) ORDER BY group_name";
+                    $groups_sql = "SELECT * FROM project_groups WHERE course_id IN (SELECT id FROM lecturer_courses WHERE lecturer_id = $user_id) ORDER BY group_name";
                 }
                 $groups = $conn->query($groups_sql);
                 
@@ -394,7 +394,7 @@ if (isset($_GET['view_file'])) {
                           </div>';
                 }
             } else {
-                $groups_sql = "SELECT * FROM groups WHERE leader_id = $user_id ORDER BY id";
+                $groups_sql = "SELECT * FROM project_groups WHERE leader_id = $user_id ORDER BY id";
                 $groups = $conn->query($groups_sql);
             }
             

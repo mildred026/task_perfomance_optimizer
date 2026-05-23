@@ -52,7 +52,7 @@ if (isset($_GET['delete_group'])) {
     $delete_group_id = intval($_GET['delete_group']);
     $conn->query("DELETE FROM group_members WHERE group_id = $delete_group_id");
     $conn->query("DELETE FROM tasks WHERE group_id = $delete_group_id");
-    $conn->query("DELETE FROM groups WHERE id = $delete_group_id");
+    $conn->query("DELETE FROM project_groups WHERE id = $delete_group_id");
     $_SESSION['admin_success'] = "Group deleted successfully!";
     header('Location: admin_dashboard.php');
     exit();
@@ -106,7 +106,7 @@ $total_users = $conn->query("SELECT COUNT(*) as count FROM users")->fetch_assoc(
 $total_students = $conn->query("SELECT COUNT(*) as count FROM users WHERE role = 'student'")->fetch_assoc()['count'];
 $total_lecturers = $conn->query("SELECT COUNT(*) as count FROM users WHERE role = 'lecturer'")->fetch_assoc()['count'];
 $total_admins = $conn->query("SELECT COUNT(*) as count FROM users WHERE role = 'admin'")->fetch_assoc()['count'];
-$total_groups = $conn->query("SELECT COUNT(*) as count FROM groups")->fetch_assoc()['count'];
+$total_groups = $conn->query("SELECT COUNT(*) as count FROM project_groups")->fetch_assoc()['count'];
 $total_tasks = $conn->query("SELECT COUNT(*) as count FROM tasks")->fetch_assoc()['count'];
 $total_contributions = $conn->query("SELECT COUNT(*) as count FROM contributions")->fetch_assoc()['count'];
 $total_final_reports = $conn->query("SELECT COUNT(*) as count FROM final_reports")->fetch_assoc()['count'];
@@ -133,7 +133,7 @@ $users = $conn->query("SELECT id, name, email, role FROM users ORDER BY id DESC"
 // Get all groups
 $groups = $conn->query("SELECT g.*, u.name as leader_name, 
                         (SELECT COUNT(*) FROM group_members WHERE group_id = g.id) as member_count
-                        FROM groups g
+                        FROM project_groups g
                         LEFT JOIN users u ON g.leader_id = u.id
                         ORDER BY g.created_at DESC");
 
