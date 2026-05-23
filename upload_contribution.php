@@ -412,5 +412,6 @@ $my_tasks = $conn->query("SELECT id, title, due_date, status FROM tasks WHERE as
     </div>
 </div>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>

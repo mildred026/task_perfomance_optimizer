@@ -443,5 +443,6 @@ $unread_badge = $unread_count;
     </div>
 </div>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>

@@ -514,5 +514,6 @@ if (isset($_POST['complete_task'])) {
     </div>
 </div>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>

@@ -813,5 +813,6 @@ new Chart(groupCtx, {
 <?php endif; ?>
 </script>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>

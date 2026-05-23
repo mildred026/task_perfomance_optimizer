@@ -768,5 +768,6 @@ function removeScreenshotField(index) {
 }
 </script>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>

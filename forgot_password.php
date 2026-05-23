@@ -22,3 +22,5 @@ if (isset($_POST['submit'])) {
     <input type="email" name="email" required>
     <button type="submit" name="submit">Reset Password</button>
 </form>
+
+<?php include 'footer.php'; ?>

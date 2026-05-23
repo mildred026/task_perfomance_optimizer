@@ -900,5 +900,6 @@ if ($table_check && $table_check->num_rows > 0) {
     }
 </script>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>
