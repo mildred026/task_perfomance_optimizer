@@ -15,6 +15,10 @@ if (isset($_POST['login'])) {
 
     // Use prepared statement to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    if (!$stmt) {
+        error_log("Login query prepare failed: " . $conn->error);
+        $error = "Login is temporarily unavailable. Please check the database setup.";
+    } else {
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -49,6 +53,7 @@ if (isset($_POST['login'])) {
         }
     } else {
         $error = "No account found with this email address.";
+    }
     }
 }
 ?>
