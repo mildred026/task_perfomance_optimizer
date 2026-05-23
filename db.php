@@ -7,8 +7,8 @@ if ($database_url) {
     $db_parts = parse_url($database_url);
 
     $db_host = $db_parts['host'] ?? 'localhost';
-    $db_user = $db_parts['user'] ?? 'root';
-    $db_pass = $db_parts['pass'] ?? '';
+    $db_user = isset($db_parts['user']) ? urldecode($db_parts['user']) : 'root';
+    $db_pass = isset($db_parts['pass']) ? urldecode($db_parts['pass']) : '';
     $db_name = isset($db_parts['path']) ? ltrim($db_parts['path'], '/') : 'group_tracker';
     $db_port = $db_parts['port'] ?? 3306;
 } else {
