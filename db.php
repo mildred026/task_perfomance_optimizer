@@ -1,4 +1,6 @@
 <?php
+mysqli_report(MYSQLI_REPORT_OFF);
+
 $database_url = getenv('DATABASE_URL') ?: getenv('MYSQL_URL');
 
 if ($database_url) {
@@ -17,9 +19,9 @@ if ($database_url) {
     $db_port = getenv('DB_PORT') ?: 3306;
 }
 
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name, (int) $db_port);
+$conn = @new mysqli($db_host, $db_user, $db_pass, $db_name, (int) $db_port);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Database connection failed. Please check the Render database environment variables.");
 }
 ?>
