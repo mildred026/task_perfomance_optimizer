@@ -7,6 +7,10 @@ This project can run on Render as a Docker web service.
 
 Required Render environment variables:
 
+- `DATABASE_URL` recommended, for example a Railway MySQL URL
+
+Alternatively, set these separate variables:
+
 - `DB_HOST`
 - `DB_PORT` default: `3306`
 - `DB_NAME`
