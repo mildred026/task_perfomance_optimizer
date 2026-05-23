@@ -4,12 +4,11 @@ $footer_year = date('Y');
 <style>
     .tpo-footer {
         width: 100%;
-        margin-top: 36px;
+        margin-top: 28px;
         background: #101828;
-        color: #e5edf7;
-        border-top: 4px solid #667eea;
-        box-shadow: 0 -8px 24px rgba(16, 24, 40, 0.08);
+        color: #d7e0ec;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-top: 3px solid #667eea;
     }
 
     .tpo-footer * {
@@ -17,154 +16,66 @@ $footer_year = date('Y');
     }
 
     .tpo-footer-inner {
-        max-width: 1180px;
+        max-width: 1120px;
         margin: 0 auto;
-        padding: 34px 24px 20px;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
     }
 
-    .tpo-footer-grid {
-        display: grid;
-        grid-template-columns: 1.3fr 1fr 1fr 1fr;
-        gap: 26px;
-    }
-
-    .tpo-footer h2,
-    .tpo-footer h3 {
+    .tpo-footer-title {
         color: #ffffff;
-        margin: 0 0 12px;
-        line-height: 1.25;
-    }
-
-    .tpo-footer h2 {
-        font-size: 1.35rem;
-    }
-
-    .tpo-footer h3 {
-        font-size: 0.98rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-    }
-
-    .tpo-footer p,
-    .tpo-footer li,
-    .tpo-footer a {
-        color: #c8d3e1;
-        font-size: 0.9rem;
-        line-height: 1.7;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 4px;
     }
 
     .tpo-footer p {
         margin: 0;
+        color: #c7d2df;
+        font-size: 0.86rem;
+        line-height: 1.55;
     }
 
-    .tpo-footer ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .tpo-footer a {
-        text-decoration: none;
-    }
-
-    .tpo-footer a:hover {
-        color: #ffffff;
-        text-decoration: underline;
-    }
-
-    .tpo-footer-badge {
-        display: inline-block;
-        margin-top: 14px;
-        padding: 7px 10px;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 6px;
-        color: #ffffff;
-        font-size: 0.78rem;
-        background: rgba(102, 126, 234, 0.18);
-    }
-
-    .tpo-footer-bottom {
+    .tpo-footer-links {
         display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        margin-top: 28px;
-        padding-top: 18px;
-        border-top: 1px solid rgba(255, 255, 255, 0.14);
-        color: #a8b4c4;
-        font-size: 0.82rem;
-        line-height: 1.6;
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 0.85rem;
     }
 
-    @media (max-width: 960px) {
-        .tpo-footer-grid {
-            grid-template-columns: 1fr 1fr;
-        }
+    .tpo-footer-links span {
+        color: #e5edf7;
+        white-space: nowrap;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 700px) {
         .tpo-footer-inner {
-            padding: 28px 18px 18px;
-        }
-
-        .tpo-footer-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .tpo-footer-bottom {
+            align-items: flex-start;
             flex-direction: column;
+        }
+
+        .tpo-footer-links {
+            flex-direction: column;
+            gap: 6px;
         }
     }
 </style>
 
 <footer class="tpo-footer" id="tpoFooter">
     <div class="tpo-footer-inner">
-        <div class="tpo-footer-grid">
-            <section>
-                <h2>Task Performance Optimizer</h2>
-                <p>
-                    A web-based academic group contribution system for tracking group membership,
-                    task assignment, individual submissions, progress evidence, final reports,
-                    lecturer review, and accountability in collaborative coursework.
-                </p>
-                <span class="tpo-footer-badge">Student contribution tracking and project oversight</span>
-            </section>
-
-            <section>
-                <h3>Contact</h3>
-                <ul>
-                    <li>System support: Administrator or assigned lecturer</li>
-                    <li>Email: support@task-performance.local</li>
-                    <li>Office: Academic projects coordination desk</li>
-                    <li>Hours: Monday to Friday, 8:00 AM - 5:00 PM</li>
-                </ul>
-            </section>
-
-            <section>
-                <h3>Policies</h3>
-                <ul>
-                    <li>Use official names and valid academic email details.</li>
-                    <li>Upload only coursework-related files and progress evidence.</li>
-                    <li>Do not submit another student's work or identity evidence.</li>
-                    <li>Leaders should assign tasks fairly and review updates responsibly.</li>
-                    <li>Reports and uploads may be reviewed by lecturers or administrators.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h3>Regulations</h3>
-                <ul>
-                    <li>Users must follow institutional academic integrity rules.</li>
-                    <li>Personal data is used only for authentication, tracking, and assessment support.</li>
-                    <li>Uploaded files must not contain malware, illegal content, or private third-party data.</li>
-                    <li>Video verification is used only to support task ownership and participation review.</li>
-                    <li>Unauthorized access, tampering, or deletion of records is prohibited.</li>
-                </ul>
-            </section>
+        <div>
+            <div class="tpo-footer-title">Task Performance Optimizer</div>
+            <p>&copy; <?php echo $footer_year; ?> Academic group contribution tracking system.</p>
         </div>
 
-        <div class="tpo-footer-bottom">
-            <span>&copy; <?php echo $footer_year; ?> Task Performance Optimizer. All rights reserved.</span>
-            <span>Built for transparent academic collaboration, fair contribution tracking, and responsible project reporting.</span>
+        <div class="tpo-footer-links" aria-label="Project contact, policies and regulations">
+            <span>Contact: support@task-performance.local</span>
+            <span>Policy: academic use only</span>
+            <span>Regulation: protect student data and submissions</span>
         </div>
     </div>
 </footer>
@@ -179,6 +90,12 @@ $footer_year = date('Y');
         var target = document.querySelector('.main-content, .app-container .main, .app-container .content, main');
         if (target && !target.contains(footer)) {
             target.appendChild(footer);
+            return;
+        }
+
+        if (footer.parentElement === document.body) {
+            document.body.style.flexDirection = 'column';
+            document.body.style.alignItems = 'stretch';
         }
     })();
 </script>
