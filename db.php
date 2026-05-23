@@ -42,4 +42,19 @@ if ($conn->connect_error) {
 }
 
 $conn->set_charset('utf8mb4');
+
+// One-time migration for Railway/MySQL: GROUPS is a reserved keyword in newer MySQL.
+// If the old table exists and the new table does not, rename it automatically.
+$project_groups_exists = $conn->query("SHOW TABLES LIKE 'project_groups'");
+$old_groups_exists = $conn->query("SHOW TABLES LIKE 'groups'");
+if (
+    $project_groups_exists &&
+    $old_groups_exists &&
+    $project_groups_exists->num_rows === 0 &&
+    $old_groups_exists->num_rows > 0
+) {
+    if (!$conn->query("RENAME TABLE `groups` TO project_groups")) {
+        error_log('Failed to rename `groups` table to project_groups: ' . $conn->error);
+    }
+}
 ?>
