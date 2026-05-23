@@ -3,21 +3,36 @@ Web-based system for tracking student contributions, task progress, and performa
 
 ## Render Deployment
 
-This project can run on Render as a Docker web service.
+This project runs on Render as a Docker web service.
 
-Required Render environment variables:
+Live service URL:
 
-- `DATABASE_URL` recommended, for example a Railway MySQL URL
+- `https://task-perfomance-optimizer.onrender.com`
 
-Alternatively, set these separate variables:
+Required Render environment variable:
 
-- `DB_HOST`
-- `DB_PORT` default: `3306`
-- `DB_NAME`
-- `DB_USER`
-- `DB_PASS`
+- `DATABASE_URL`
 
-The app still works locally in XAMPP because `db.php` falls back to:
+Example format:
+
+```text
+mysql://USER:PASSWORD@HOST:PORT/DATABASE
+```
+
+Deployment files:
+
+- `Dockerfile` builds the PHP/Apache container.
+- `render/start.sh` configures Apache to listen on Render's assigned `PORT`.
+- `render.yaml` defines the Render web service and health check.
+- `health.php` provides the Render health endpoint.
+
+After adding or changing `DATABASE_URL` in Render, run:
+
+```text
+Manual Deploy -> Clear build cache & deploy
+```
+
+Local XAMPP fallback:
 
 - host: `localhost`
 - user: `root`

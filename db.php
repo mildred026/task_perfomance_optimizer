@@ -2,6 +2,7 @@
 mysqli_report(MYSQLI_REPORT_OFF);
 
 $database_url = getenv('DATABASE_URL') ?: getenv('MYSQL_URL');
+$running_in_production = getenv('RENDER') === 'true' || getenv('APP_ENV') === 'production';
 
 if ($database_url) {
     $db_parts = parse_url($database_url);
@@ -12,6 +13,11 @@ if ($database_url) {
     $db_name = isset($db_parts['path']) ? ltrim($db_parts['path'], '/') : 'group_tracker';
     $db_port = $db_parts['port'] ?? 3306;
 } else {
+    if ($running_in_production && !getenv('DB_HOST')) {
+        error_log('Database configuration missing in production. Set DATABASE_URL in the service environment variables.');
+        die("Database connection failed. DATABASE_URL is not configured.");
+    }
+
     $db_host = getenv('DB_HOST') ?: 'localhost';
     $db_user = getenv('DB_USER') ?: 'root';
     $db_pass = getenv('DB_PASS') ?: '';
@@ -34,4 +40,6 @@ if ($conn->connect_error) {
 
     die("Database connection failed. Please check the Render database environment variables.");
 }
+
+$conn->set_charset('utf8mb4');
 ?>
