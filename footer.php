@@ -1,7 +1,27 @@
 <?php
 $footer_year = date('Y');
 ?>
-<style>
+<style id="tpoFooterStyles">
+    body.tpo-footer-page {
+        display: block !important;
+        align-items: initial !important;
+    }
+
+    .tpo-page-shell {
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+        align-items: stretch;
+    }
+
+    .tpo-page-shell > .sidebar {
+        flex-shrink: 0;
+    }
+
+    .tpo-page-shell > .main-content {
+        min-width: 0;
+    }
+
     .tpo-footer {
         width: 100%;
         margin-top: 0;
@@ -191,15 +211,27 @@ $footer_year = date('Y');
             return;
         }
 
-        var target = document.querySelector('.main-content, .app-container .main, .app-container .content, main');
-        if (target && !target.contains(footer)) {
-            target.appendChild(footer);
+        var body = document.body;
+        var hasSidebarLayout = body.querySelector(':scope > .sidebar') && body.querySelector(':scope > .main-content');
+        var hasWrappedLayout = body.querySelector(':scope > .app-container');
+
+        if (hasSidebarLayout && footer.parentElement === body && !body.querySelector(':scope > .tpo-page-shell')) {
+            var styles = document.getElementById('tpoFooterStyles');
+            var boundary = styles || footer;
+            var shell = document.createElement('div');
+            shell.className = 'tpo-page-shell';
+
+            while (body.firstChild && body.firstChild !== boundary) {
+                shell.appendChild(body.firstChild);
+            }
+
+            body.insertBefore(shell, boundary);
+            body.classList.add('tpo-footer-page');
             return;
         }
 
-        if (footer.parentElement === document.body) {
-            document.body.style.flexDirection = 'column';
-            document.body.style.alignItems = 'stretch';
+        if (hasWrappedLayout && footer.parentElement === body) {
+            body.classList.add('tpo-footer-page');
         }
     })();
 </script>
