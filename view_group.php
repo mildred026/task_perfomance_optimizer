@@ -523,6 +523,5 @@ window.onclick = function(event) {
 </script>
 <?php endif; ?>
 
-<?php include 'footer.php'; ?>
 </body>
 </html>

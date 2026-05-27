@@ -478,6 +478,5 @@ if (isset($_GET['download'])) {
         </div>
     </div>
 </div>
-<?php include 'footer.php'; ?>
 </body>
 </html>

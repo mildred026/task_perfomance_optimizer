@@ -626,6 +626,5 @@ if ($table_check && $table_check->num_rows > 0) {
     </div>
 </div>
 
-<?php include 'footer.php'; ?>
 </body>
 </html>

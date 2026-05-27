@@ -1,4 +1,8 @@
 <?php
+if (basename($_SERVER['SCRIPT_NAME'] ?? '') !== 'index.php') {
+    return;
+}
+
 $footer_year = date('Y');
 ?>
 <style id="tpoFooterStyles">

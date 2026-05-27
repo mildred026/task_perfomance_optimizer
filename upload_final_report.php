@@ -440,6 +440,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['final_report'])) {
         }
     });
 </script>
-<?php include 'footer.php'; ?>
 </body>
 </html>

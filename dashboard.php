@@ -1084,6 +1084,5 @@ if (currentTime - lastVideoCheck > minTime) {
 <?php endif; ?>
 </script>
 
-<?php include 'footer.php'; ?>
 </body>
 </html>

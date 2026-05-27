@@ -334,6 +334,5 @@ function verifyVideo(videoId, status) {
 }
 </script>
 
-<?php include 'footer.php'; ?>
 </body>
 </html>
